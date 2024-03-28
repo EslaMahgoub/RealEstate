@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="estate_property_details" name="Estate Property Details">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br />
+                    <center><h3>Estate Property Details</h3></center>
+                    <table class="table-striped table">
+                        <thead>
+                            <tr>
+                                <h6> <b>
+                                    <th>Estate Name</th>
+                                    <th>Seller</th>
+                                    <th>Date</th>
+                                    <th>State</th>
+                                </b></h6>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="estate_property_details" t-as="estate">
+                                <tr>
+                                    <td><span t-esc="estate.name"/></td>
+                                    <td><span t-esc="estate.salesman_id.name"/></td>
+                                    <td><span t-esc="estate.date_availability"/></td>
+                                    <td><span t-esc="estate.state"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="modal-body">
+
+                    <form 
+                        method='post'
+                        action="/new_property_request_submit">
+
+                        <center>
+                            <h6 class="text-center">Name</h6>
+                            <input type="input" name="st_name" id="st_name" class="form-control w-50" />
+                            <h6 class="text-center">Expected Price</h6>
+                            <input type="input" name="st_expected_price" id="st_expected_price" class="form-control w-50" />
+                            <br/>
+
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-info mx-auto"
+                                >Submit
+                                    <i class="fa fa-check-square"></i>
+                                </button>
+
+                            </div>
+
+                        </center>
+
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

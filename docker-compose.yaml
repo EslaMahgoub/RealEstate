@@ -1,0 +1,37 @@
+version: '3.1'
+services:
+  web:
+    image: odoo:15.0
+    depends_on:
+      - db_odoo15
+    ports:
+      - "8069:8069"
+    environment:
+    - HOST=db_odoo15
+    - USER=odoo
+    - PASSWORD=myodoo
+    volumes:
+      - ./extra-addons:/mnt/extra-addons
+      - ./odoo.conf:/etc/odoo/odoo.conf
+      - data:/var/lib/odoo
+    command:
+      -d test_db_15
+      --update estate,estate_account,estate_property_report
+      --dev xml
+  db_odoo15:
+    image: postgres:15
+    restart: always
+    # user: odoo
+    environment:
+      - PGUSER=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=myodoo
+      - POSTGRES_DB=postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg-odoo:/var/lib/postgresql/data
+
+volumes:
+  pg-odoo:
+  data:

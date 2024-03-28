@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="success" name="Estate Property Successfully Created">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br />
+                    <center><h3>Estate Property Details</h3></center>
+                    <h3> Estate Property Successfully Created</h3>
+                    <span t-esc="estate_propety_id.name"/>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

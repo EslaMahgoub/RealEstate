@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="estate_property_report_tree_view" model="ir.ui.view">
+        <field name="name">estate.property.report.tree</field>
+        <field name="model">estate.property.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="estate_name" string="Title" />
+                <field name="selling_price"/>
+                <field name="partner_name"/>
+                <field name="partner_email" />
+                <field name="partner_phone" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="estate_property_report_action" model="ir.actions.act_window">
+        <field name="name">Estate Property Report</field>
+        <field name="res_model">estate.property.report</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            No Estate Property created yet to report
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="estate_property_report_menu"
+        parent="estate.estate_property_root"
+        name="Report"
+        action="estate_property_report_action"
+        />
+</odoo>
